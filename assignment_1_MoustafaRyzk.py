@@ -29,7 +29,7 @@ number = int(number)
 
 def divisors_List(number):
     divisors_List = []
-    for x in range(number+1):
+    for x in range(number):
         if (number%(x+1)==0):
             divisors_List.append(x+1)
     print(divisors_List)

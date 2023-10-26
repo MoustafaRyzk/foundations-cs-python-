@@ -8,7 +8,6 @@ def Menu():
     print("3.2. Count Normalized Columns")
     print("4. Exit")
     print("---------------------------")
-    print("Enter a Choice:")
 
 def count_Digits(number):
     if number == 0:

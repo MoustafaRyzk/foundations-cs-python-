@@ -6,7 +6,7 @@ def GetDigit(text):
 
     num = input(text)
     while not num.isdigit():
-        num = inputd(text)
+        num = input(text)
     num = int(num)
     return num
 

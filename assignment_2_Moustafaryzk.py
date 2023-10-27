@@ -1,18 +1,19 @@
-#assignmentt num 2
+###################
+# assignmentt 2   #
+###################
 
 def GetDigit(text):
 
     num = input(text)
     while not num.isdigit():
-        num = input(text)
+        num = inputd(text)
     num = int(num)
     return num
 
 def Menu():
     print("1. Count Digits")
     print("2. Find Max    ")
-    print("3.1. Count Tags")
-    print("3.2. Count Normalized Columns")
+    print("3. Count Tags")
     print("4. Exit")
     print("---------------------------")
 
@@ -87,10 +88,15 @@ def Start_assignment():
         if user_Choice==3:
             html_code = input("Enter the HTML code: ")
             html_tag=input("Enter tag")
-            print("number of tag ", html_tag, "=", count_tag(html_code,html_code))
+            print("number of tag", html_tag, "=", count_tag(html_code,html_code))
 
 
         if user_Choice==4:
             quit()
 
 
+def main():
+
+    Start_assignment()
+
+main()

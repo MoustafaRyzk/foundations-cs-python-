@@ -1,4 +1,4 @@
-# assignmentt num 2
+#assignmentt num 2
 
 def GetDigit(text):
 
@@ -7,6 +7,7 @@ def GetDigit(text):
         num = input(text)
     num = int(num)
     return num
+
 def Menu():
     print("1. Count Digits")
     print("2. Find Max    ")
@@ -14,7 +15,6 @@ def Menu():
     print("3.2. Count Normalized Columns")
     print("4. Exit")
     print("---------------------------")
-
 
 def count_Digits(number):
     if number == 0:
@@ -33,6 +33,26 @@ def get_max(lst):
         else:
             return sub_max
 
+def count_tag(html, tag):
+    if len(html) == 0:
+        return 0
+
+    opening_tag = "<" + tag + ">"
+    closing_tag = "</" + tag + ">"
+
+    opening_index = html.find(opening_tag)
+    if opening_index == -1:
+        return 0
+
+    closing_index = html.find(closing_tag, opening_index)
+    if closing_index == -1:
+        return 0
+
+    count = 1
+    updated_html = html[closing_index + len(closing_tag):]
+    count += count_tag(updated_html, tag)
+
+    return count
 
 def Start_assignment():
 
@@ -64,7 +84,10 @@ def Start_assignment():
             print("max item = ", get_max(lst))
 
 
-      
+        if user_Choice==3:
+            html_code = input("Enter the HTML code: ")
+            html_tag=input("Enter tag")
+            print("number of tag ", html_tag, "=", count_tag(html_code,html_code))
 
 
         if user_Choice==4:

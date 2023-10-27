@@ -15,4 +15,14 @@ def count_Digits(number):
     elif number < 0:
         number = -number
     return 1 + count_Digits(number // 10)
+
+def get_max(lst):
+    if len(lst) == 1:
+        return lst[0]
+    else:
+        sub_max = get_max(lst[1:])
+        if lst[0] > sub_max:
+            return lst[0]
+        else:
+            return sub_max
     

@@ -197,3 +197,8 @@ def startApplication(student_List):
 
         else:
           print("Inavild Number !!!")
+
+def main():
+    startApplication(getStudentList())
+
+main()

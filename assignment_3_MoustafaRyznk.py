@@ -105,5 +105,13 @@ def addNewStudent():
     GPA = float(GPA)
     new_Student["GPA"] = GPA
     return new_Student    
-    
-    
+
+def deleteStudent(student_List):
+    student_lst=student_List
+    student_By_ID = getStudentByID(student_List)
+    if student_By_ID == -1:
+        print("Student not found!!!")
+        return student_lst
+    else:
+        student_lst.remove(student_By_ID)
+    return student_lst    

@@ -82,7 +82,7 @@ def getStudentsByMajor(student_Lst):
 
 
 def addNewStudent():
-    new_Student = dict()
+    new_Student = {}
 
     print("Please Enter ID of new student :", end=" ")
     ID = input()

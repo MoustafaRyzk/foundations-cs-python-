@@ -1,3 +1,4 @@
+
 def menu():
     print("""1. Get Student by ID
 2. Get All Students
@@ -9,7 +10,7 @@ def menu():
 8. Get Top Performers
 9. Exit
 - - - - - - - - - - - - - - -""")
-    
+
 def getStudentList():
     student_Lst=[]
     number_Of_Students=input("Please Enter Number Of Students:")
@@ -17,7 +18,7 @@ def getStudentList():
         number_Of_Students = input("Please Enter Number Of Students:")
     number_Of_Students=int(number_Of_Students)
     for i in range(number_Of_Students):
-        student_Dictionary=dict()
+        student_Dictionary= {}
 
 
         print("Please Enter ID of student", i + 1, ":", end=" ")
@@ -50,7 +51,6 @@ def getStudentList():
         student_Dictionary["GPA"] = GPA
         student_Lst.append(student_Dictionary)
     return student_Lst
-
 def getStudentByID(student_Lst):
     ID = input("Please Enter ID of student: ")
     while not ID.isnumeric():
@@ -61,7 +61,6 @@ def getStudentByID(student_Lst):
             return student_Lst[x]
 
     return -1
-
 def getStudentsByMajor(student_Lst):
     studentsNames=[]
     Major = input("Please enter the major of the students you want information about:")
@@ -72,7 +71,6 @@ def getStudentsByMajor(student_Lst):
         return 0
     else:
         return studentsNames
-    
 def addNewStudent():
     new_Student = {}
 
@@ -104,8 +102,24 @@ def addNewStudent():
         GPA = input("Please Enter student GPA")
     GPA = float(GPA)
     new_Student["GPA"] = GPA
-    return new_Student    
+    return new_Student
 
+def findCommonMajors(student_List1, student_List2):
+  majors_student1 = set()
+  majors_student2 = set()
+
+  for student in student_List1:
+    majors_student1.add(student['Major'])
+
+  for student in student_List2:
+    majors_student2.add(student['Major'])
+
+  common_majors = set()
+  for major in majors_student1:
+    if major in majors_student2:
+      common_majors.add(major)
+
+  return common_majors
 def deleteStudent(student_List):
     student_lst=student_List
     student_By_ID = getStudentByID(student_List)
@@ -114,9 +128,12 @@ def deleteStudent(student_List):
         return student_lst
     else:
         student_lst.remove(student_By_ID)
-    return student_lst    
+    return student_lst
 
 def calculateAverageGPA(student_List):
+    if len(student_List)<=0:
+      print("sry no student found to calculate GPA average!!!")
+      return 0
     total_Average=0
     for student in student_List:
         total_Average+=student["GPA"]
@@ -142,7 +159,6 @@ def getTopPerformance(student_list):
       students.append(sub_Student)
     students=tuple(students)
     return students
-
 def startApplication(student_List):
     user_Choice=1
     while user_Choice != 9:
@@ -182,6 +198,9 @@ def startApplication(student_List):
         elif user_Choice==4:
             student_lst.append(addNewStudent())
 
+        elif user_Choice==5:
+          print("common majors of the 2 lists of students are",find_Common_Majors(student_List, student_List))
+
         elif user_Choice==6:
             student_lst=deleteStudent(student_lst)
 
@@ -197,6 +216,7 @@ def startApplication(student_List):
 
         else:
           print("Inavild Number !!!")
+
 
 def main():
     startApplication(getStudentList())

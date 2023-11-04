@@ -50,3 +50,14 @@ def getStudentList():
         student_Dictionary["GPA"] = GPA
         student_Lst.append(student_Dictionary)
     return student_Lst
+
+def getStudentByID(student_Lst):
+    ID = input("Please Enter ID of student: ")
+    while not ID.isnumeric():
+        ID = input("Please Enter ID of student:")
+    ID = int(ID)
+    for x in range(len(student_Lst)):
+        if student_Lst[x]["ID"]==ID:
+            return student_Lst[x]
+
+    return -1

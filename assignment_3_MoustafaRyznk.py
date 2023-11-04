@@ -115,3 +115,9 @@ def deleteStudent(student_List):
     else:
         student_lst.remove(student_By_ID)
     return student_lst    
+
+def calculateAverageGPA(student_List):
+    total_Average=0
+    for student in student_List:
+        total_Average+=student["GPA"]
+    return total_Average/len(student_List)

@@ -61,3 +61,14 @@ def getStudentByID(student_Lst):
             return student_Lst[x]
 
     return -1
+
+def getStudentsByMajor(student_Lst):
+    studentsNames=[]
+    Major = input("Please enter the major of the students you want information about:")
+    for x in range(len(student_Lst)):
+        if student_Lst[x]["Major"] == Major:
+            studentsNames.append(student_Lst[x]["Name"])
+    if len(studentsNames)==0:
+        return 0
+    else:
+        return studentsNames

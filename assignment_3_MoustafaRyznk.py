@@ -72,3 +72,38 @@ def getStudentsByMajor(student_Lst):
         return 0
     else:
         return studentsNames
+    
+def addNewStudent():
+    new_Student = {}
+
+    print("Please Enter ID of new student :", end=" ")
+    ID = input()
+    while not ID.isnumeric():
+        ID = input("Please Enter ID of new student: ")
+    ID = int(ID)
+    new_Student["ID"] = ID
+
+    print("Please Enter Name of new student:", end=" ")
+    name = input()
+    new_Student["Name"] = name
+
+    print("Please Enter new student age :", end=" ")
+    age = input()
+    while not age.isnumeric():
+        age = input("Please Enter new student age:")
+    age = int(age)
+    new_Student["Age"] = age
+
+    print("Please Enter new student major: ", end="")
+    major = input()
+    new_Student["Major"] = major
+
+    print("Please Enter new student GPA: ", end="")
+    GPA = input()
+    while not GPA.isnumeric():
+        GPA = input("Please Enter student GPA")
+    GPA = float(GPA)
+    new_Student["GPA"] = GPA
+    return new_Student    
+    
+    

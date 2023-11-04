@@ -10,6 +10,7 @@ def menu():
 9. Exit
 - - - - - - - - - - - - - - -""")
 
+
 def getStudentList():
     student_Lst = []
     number_Of_Students = input("Please Enter Number Of Students:")
@@ -33,7 +34,8 @@ def getStudentList():
         print("Please Enter student", i + 1, "age:", end=" ")
         age = input()
         while not age.isnumeric():
-            age = input()
+            print("you must enter an integer number !")
+            age = input("Please Enter student age : ")
         age = int(age)
         student_Dictionary["Age"] = age
 
@@ -41,13 +43,17 @@ def getStudentList():
         major = input()
         student_Dictionary["Major"] = major
 
-        print("Please Enter student", i + 1, "GPA: ", end="")
-        GPA = input()
-        while not GPA.isnumeric():
-            GPA = input("Please Enter student GPA")
-        GPA = float(GPA)
+        while True:
+          try:
+            print("Please Enter student", i + 1, "GPA: ", end="")
+            GPA = float(input())
+            break
+          except ValueError:
+            print("you must enter an integer or float number only!")
         student_Dictionary["GPA"] = GPA
+
         student_Lst.append(student_Dictionary)
+
     return student_Lst
 
 
@@ -92,6 +98,7 @@ def addNewStudent():
     print("Please Enter new student age :", end=" ")
     age = input()
     while not age.isnumeric():
+        print("You must enter an integer!")
         age = input("Please Enter new student age:")
     age = int(age)
     new_Student["Age"] = age
@@ -100,12 +107,16 @@ def addNewStudent():
     major = input()
     new_Student["Major"] = major
 
-    print("Please Enter new student GPA: ", end="")
-    GPA = input()
-    while not GPA.isnumeric():
-        GPA = input("Please Enter student GPA")
-    GPA = float(GPA)
+    while True:
+      try:
+        print("Please Enter new student GPA: ", end="")
+        GPA = float(input())
+        break
+      except ValueError:
+          print("you must enter an integer or float number!")
+
     new_Student["GPA"] = GPA
+
     return new_Student
 
 
@@ -154,8 +165,8 @@ def getTopPerformance(student_list):
         students_Highest_GPAs = input("Please enter number of student you want of highest GPAs:")
     students_Highest_GPAs = int(students_Highest_GPAs)
 
-    #if len(student_list) <= 0:
-     #   return 0
+    # if len(student_list) <= 0:
+    #   return 0
 
     lst_GPAs = []
     for x in range(len(student_list)):
@@ -233,7 +244,6 @@ def startApplication(student_List):
 
 def main():
     startApplication(getStudentList())
-
 
 
 main()

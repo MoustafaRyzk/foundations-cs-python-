@@ -142,3 +142,58 @@ def getTopPerformance(student_list):
       students.append(sub_Student)
     students=tuple(students)
     return students
+
+def startApplication(student_List):
+    user_Choice=1
+    while user_Choice != 9:
+        student_lst = student_List
+        menu()
+        user_Choice = input("Please enter your choice:")
+        while not user_Choice.isnumeric or not (
+                (user_Choice == "1") or (user_Choice == "2") or (user_Choice == "3") or (user_Choice == "4") or (
+                user_Choice == "5") or (user_Choice == "6") or (user_Choice == "7") or (user_Choice == "8") or (
+                        user_Choice == "9")):
+            user_Choice = input("Please enter your choice between 1 and 9:")
+        user_Choice = int(user_Choice)
+
+
+
+        if user_Choice==1:
+            user_Information=getStudentByID(student_lst)
+            if user_Information==-1:
+                print("User not found")
+            else:
+                for x, y in user_Information.items():
+                    print(x, ":", y)
+
+        elif user_Choice==2:
+            for student in student_lst:
+                for x, y in student.items():
+                    print(x, ":", y)
+                print("************")
+
+        elif user_Choice==3:
+            students_info = getStudentsByMajor(student_lst)
+            if students_info==0:
+                print("User not found")
+            else:
+                print(students_info)
+
+        elif user_Choice==4:
+            student_lst.append(addNewStudent())
+
+        elif user_Choice==6:
+            student_lst=deleteStudent(student_lst)
+
+        elif user_Choice==7:
+            total_GPA_Average=calculateAverageGPA(student_List)
+            print("Total GPA average of all student =", total_GPA_Average)
+
+        elif user_Choice==8:
+          print(getTopPerformance(student_lst))
+
+        elif user_Choice==9:
+            quit()
+
+        else:
+          print("Inavild Number !!!")

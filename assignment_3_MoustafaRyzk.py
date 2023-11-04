@@ -186,9 +186,10 @@ def getTopPerformance(student_list):
 
 
 def startApplication(student_List):
+    student_lst = student_List
     user_Choice = 1
     while user_Choice != 9:
-        student_lst = student_List
+
         menu()
         user_Choice = input("Please enter your choice:")
         while not user_Choice.isnumeric or not (

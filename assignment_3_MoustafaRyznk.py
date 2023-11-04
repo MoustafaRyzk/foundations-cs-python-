@@ -121,3 +121,24 @@ def calculateAverageGPA(student_List):
     for student in student_List:
         total_Average+=student["GPA"]
     return total_Average/len(student_List)
+
+def getTopPerformance(student_list):
+    students_Highest_GPAs=input("Please enter number of student you want of highest GPAs:")
+    while not students_Highest_GPAs.isnumeric():
+      students_Highest_GPAs = input("Please enter number of student you want of highest GPAs:")
+    students_Highest_GPAs=int(students_Highest_GPAs)
+    lst_GPAs=[]
+    for x in range(len(student_list)):
+      lst_GPAs.append(student_list[x]["GPA"])
+
+    lst_GPAs.sort(reverse=True)
+    students = []
+    for i in range(students_Highest_GPAs):
+      sub_Student = []
+      for j in range(len(student_list)):
+        if student_list[j]["GPA"] == lst_GPAs[i]:
+          sub_Student.append(student_list[j]["Name"])
+          sub_Student.append(student_list[j]["GPA"])
+      students.append(sub_Student)
+    students=tuple(students)
+    return students

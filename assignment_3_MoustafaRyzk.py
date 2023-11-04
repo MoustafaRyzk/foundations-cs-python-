@@ -212,7 +212,7 @@ def startApplication(student_List):
             student_lst.append(addNewStudent())
 
         elif user_Choice == 5:
-            print("common majors of the 2 lists of students are", find_Common_Majors(student_List, student_List))
+            print("common majors of the 2 lists of students are", findCommonMajors(student_List, student_List))
 
         elif user_Choice == 6:
             student_lst = deleteStudent(student_lst)
@@ -233,6 +233,7 @@ def startApplication(student_List):
 
 def main():
     startApplication(getStudentList())
+
 
 
 main()

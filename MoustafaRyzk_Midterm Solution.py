@@ -61,7 +61,14 @@ def closeTab():
         return
 
     index = input("Please enter the index of tab you want to close , you can leave this field empty so we close last tab : ")
-  
+    if not index.isnumeric():
+        if index == "":
+            tabs.pop()
+            print("Closing the last tab is completed")
+            return
+        else:
+             print("Invalid tab index ")
+
     index = int(index)
 
     if index >= 0 and index < len(tabs):

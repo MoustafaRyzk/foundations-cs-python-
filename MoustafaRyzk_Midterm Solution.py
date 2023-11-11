@@ -38,3 +38,9 @@ def displayMenu():
     print("9. Exit")
     print("####################")
     print()
+
+def openTab():
+    title = input("PLease enter the title of the website: ")
+
+    url = input("Please enter the URL of the website: ")
+    tabs.append(tab)

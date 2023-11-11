@@ -83,7 +83,12 @@ def switchTab():
         print("<< You don't have any tab disply its content !! >>")
         return
     index = input("Please enter the index of tab you want to display its content : ")
-    
+    while not index.isnumeric():
+        if index == "":
+            index = len(tabs) - 1
+            break
+        else:
+            index = input("Please enter the index of tab you want to display its content : ")
     index=int(index)
 
     if index >= 0 and index < len(tabs):

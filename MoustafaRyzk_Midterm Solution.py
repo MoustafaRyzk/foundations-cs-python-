@@ -53,3 +53,19 @@ def openTab():
     if correct_Url:
         tab = {"title": title, "url": url}
         tabs.append(tab)
+
+def closeTab():
+
+    if len(tabs) == 0:
+        print("You don't have any tab opened!!")
+        return
+
+    index = input("Please enter the index of tab you want to close , you can leave this field empty so we close last tab : ")
+  
+    index = int(index)
+
+    if index >= 0 and index < len(tabs):
+        tabs.pop(index)
+        print(f"Closing tab at index {index} completed")
+    else:
+        print(f"<< Index {index} is an Invalid tab index >>")

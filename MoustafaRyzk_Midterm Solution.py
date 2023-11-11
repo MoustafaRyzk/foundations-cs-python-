@@ -76,3 +76,27 @@ def closeTab():
         print(f"Closing tab at index {index} completed")
     else:
         print(f"<< Index {index} is an Invalid tab index >>")
+
+
+def switchTab():
+    if len(tabs) == 0:
+        print("<< You don't have any tab disply its content !! >>")
+        return
+    index = input("Please enter the index of tab you want to display its content : ")
+    
+    index=int(index)
+
+    if index >= 0 and index < len(tabs):
+        tab = tabs[index]
+
+        title = tab['title']
+        url = tab['url']
+        url_Reader = requests.get(url).content
+        content = BeautifulSoup(url_Reader, "lxml")  # https://www.youtube.com/watch?v=taL3r_JpwBg
+
+        print(f"title: {title}")
+        print(f"URL: {url}")
+        print(f"{content}")
+
+    else:
+        print(f"<< Index {index} is an Invalid tab index >>")

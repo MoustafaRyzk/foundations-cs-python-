@@ -43,4 +43,13 @@ def openTab():
     title = input("PLease enter the title of the website: ")
 
     url = input("Please enter the URL of the website: ")
-    tabs.append(tab)
+    correct_Url = False
+    try:
+        url_Reader = requests.get(url)
+        correct_Url = True
+    except:
+        print(" << Invalid URL , please check website URL and try again >> ")
+
+    if correct_Url:
+        tab = {"title": title, "url": url}
+        tabs.append(tab)

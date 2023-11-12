@@ -1,12 +1,13 @@
 import json
 import requests
-from bs4 import BeautifulSoup #https://www.youtube.com/watch?v=taL3r_JpwBg
+from bs4 import BeautifulSoup  # https://www.youtube.com/watch?v=taL3r_JpwBg
 
-#----------------
-#for reusability:
-#----------------
+
+# ----------------
+# for reusability:
+# ----------------
 def getPositiveIntegerNumber(text_Message, hint):
-    number=input(text_Message)
+    number = input(text_Message)
 
     while not number.isnumeric():
         print(hint)
@@ -14,14 +15,17 @@ def getPositiveIntegerNumber(text_Message, hint):
 
     return int(number)
 
+
 def getPostiveIntNumFrom_to(text_Message, hint, fr_om, to):
     while True:
         number = getPositiveIntegerNumber(text_Message, hint)
-        if (number>=fr_om) and (number<=to):
-           return number
+        if (number >= fr_om) and (number <= to):
+            return number
 
         print(hint)
-#----------------------------------------------------------------#
+
+
+# ----------------------------------------------------------------#
 
 def displayMenu():
     print("\n####################")
@@ -40,6 +44,7 @@ def displayMenu():
     print("####################")
     print()
 
+
 def openTab():
     title = input("PLease enter the title of the website: ")
 
@@ -55,20 +60,21 @@ def openTab():
         tab = {"title": title, "url": url}
         tabs.append(tab)
 
-def closeTab():
 
+def closeTab():
     if len(tabs) == 0:
         print("<< You don't have any tab opened!! >>")
         return
 
-    index = input("Please enter the index of tab you want to close , you can leave this field empty so we close last tab : ")
+    index = input(
+        "Please enter the index of tab you want to close , you can leave this field empty so we close last tab : ")
     if not index.isnumeric():
         if index == "":
             tabs.pop()
             print("<< Closing the last tab is completed >>")
             return
         else:
-             print("<< Invalid tab index >> ")
+            print("<< Invalid tab index >> ")
 
     index = int(index)
 
@@ -77,6 +83,7 @@ def closeTab():
         print(f"Closing tab at index {index} completed")
     else:
         print(f"<< Index {index} is an Invalid tab index >>")
+
 
 def switchTabBYIndex():
     if len(tabs) == 0:
@@ -90,27 +97,21 @@ def switchTabBYIndex():
             break
         else:
             index = input("Please enter the index of tab you want to display its content : ")
-    index=int(index)
+
+    index = int(index)
 
     if index >= 0 and index < len(tabs):
-        if "nestedTabs" in tabs[index]:
-            displayAllTabs(tabs[index])
-        else:
-            tab = tabs[index]
-            title = tab['title']
-            url = tab['url']
-            url_Reader = requests.get(url).content
-            content = BeautifulSoup(url_Reader, "lxml")
-            print(f"title: {title}")
-            print(f"URL: {url}")
-            print(f"content: {content}")
+        switched_Tab=[]
+        switched_Tab.append(tabs[index])
+        displayAllTabs(switched_Tab)
     else:
-        print(f"<< Index {index} is an Invalid tab index >>")
+        print("<< Invalid tab index! >>")
 
-def switchTabByTitle(): # I try to improve program <<program will display all content of tabs have title the user enter>
+
+def switchTabByTitle():  # I try to improve program <<program will display all content of tabs have title the user enter>
 
     title = input("Please enter the title of tab you want to display its content : ")
-    found=False
+    found = False
     for tab in tabs:
 
         if title == tab['title']:
@@ -126,27 +127,26 @@ def switchTabByTitle(): # I try to improve program <<program will display all co
             for tab in tab['nestedTabs']:
                 if title == tab['title']:
                     print(f"title: {title}")
-                    url=tab['url']
+                    url = tab['url']
                     url_Reader = requests.get(url).content
                     content = BeautifulSoup(url_Reader, "lxml")
                     print(f"URL: {url}")
                     print(f"content: {content}")
-                    found=True
-
+                    found = True
 
     if not found:
         print(f"Tab with title {title} not found !!!")
 
-def openNestedTab():
 
+def openNestedTab():
     if len(tabs) == 0:
         print("You don't have any tab opened!!")
         return
 
     parent_Index = input("Please enter the index of the tab you want to insert additional tabs in it : ")
     while not parent_Index.isnumeric():
-            parent_Index = input("Please enter the index of the tab you want to insert additional tabs in it : ")
-    parent_Index=int(parent_Index)
+        parent_Index = input("Please enter the index of the tab you want to insert additional tabs in it : ")
+    parent_Index = int(parent_Index)
 
     if parent_Index >= 0 and parent_Index < len(tabs):
         parent_Tab = tabs[parent_Index]
@@ -170,12 +170,18 @@ def openNestedTab():
     else:
         print("Invalid tab index.")
 
-def displayAllTabs(tabs):
 
-    if len(tabs) == 0:
+def displayAllTabs(tabs):
+    if len(tabs)==0:
         return
 
     for tab in tabs:
+
+        if 'nestedTabs' in tab:
+            displayAllTabs(tab['nestedTabs'])
+
+
+
         title = tab['title']
         url = tab['url']
         url_Reader = requests.get(url).content
@@ -185,32 +191,33 @@ def displayAllTabs(tabs):
         print(f"URL: {url}")
         print(f"content: {content}")
 
-        if 'nestedTabs' in tab:
-            displayAllTabs(tab['nestedTabs'])
+
+
 
 def clearAllTabs():
     tabs.clear()
     print("<< All tabs cleared >>")
 
 def saveTabs():
-        file_Path = input("Please enter file path to save the tabs on it : ")
-        if file_Path.endswith(".json"):
-            try:
-                with open(file_path, 'w') as file:   #https://programmingadvices.com/courses/introduction-to-programming-using-c-level-2/lectures/42360420
-                    json.dump(tabs, file)            #https://www.youtube.com/watch?v=C1crQ2-SIHc
-                    print("<< Tabs saved on file >>")    #https://www.geeksforgeeks.org/json-dump-in-python/
-            except:
-                print(" << Invalid file path , please check your file path and try again >> ")
+    file_Path = input("Please enter file path to save the tabs on it : ")
+    if file_Path.endswith(".json"):
+        try:
+            with open(file_path,'w') as file:  # https://programmingadvices.com/courses/introduction-to-programming-using-c-level-2/lectures/42360420
+                json.dump(tabs, file)  # https://www.youtube.com/watch?v=C1crQ2-SIHc
+                print("<< Tabs saved on file >>")  # https://www.geeksforgeeks.org/json-dump-in-python/
+        except:
+            print(" << Invalid file path , please check your file path and try again >> ")
 
-        else:
-            print("<< Sry, You must enter a jason file path only >>")
+    else:
+        print("<< Sry, You must enter a jason file path only >>")
+
 
 def importTabs():
     file_Path = input("Please enter the file path to import the tabs in it : ")
     if file_Path.endswith(".json"):
         try:
             with open(file_Path, 'r') as file:
-                tabs.extend(json.load(file)) #https://www.geeksforgeeks.org/append-to-json-file-using-python/
+                tabs.extend(json.load(file))  # https://www.geeksforgeeks.org/append-to-json-file-using-python/
                 print("<< Tabs imported from file >>")
         except:
             print(" << Invalid file path , please check your file path and try again >> ")
@@ -218,22 +225,25 @@ def importTabs():
     else:
         print("<< Sry, You must enter a jason file path only >>")
 
-tabs=[] # her i make tabs a global variable take scoop of all project because no need to enter it as a parameter
-        # to all function one by one execpt [displayAllTabs must enter parameter => (recursive]
+
+tabs = []  # her i make tabs a global variable take scoop of all project because no need to enter it as a parameter
+
+
+# to all function one by one execpt [displayAllTabs must enter parameter => (recursive]
 
 
 def startApp():
-
     print('''----------------------------------------------------------------------------
     # HELLO USER :) , WELCOME TO OUR ADVANCED BROWSER TABS SIMULATION #
 ----------------------------------------------------------------------------''')
 
     while True:
-        
-        displayMenu()
-        
-        user_choice = getPostiveIntNumFrom_to("Please Enter Your Choice: ","<<You must enter integer number between 1 and 10 ", 1, 10)
 
+        displayMenu()
+        print(tabs)
+
+        user_choice = getPostiveIntNumFrom_to("Please Enter Your Choice: ",
+                                              "<<You must enter integer number between 1 and 10 ", 1, 10)
 
         if user_choice == 1:
             openTab()

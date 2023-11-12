@@ -224,3 +224,7 @@ tabs=[] # her i make tabs a global variable take scoop of all project because no
 
 
 def startApp():
+    
+    print('''----------------------------------------------------------------------------
+    # HELLO USER :) , WELCOME TO OUR ADVANCED BROWSER TABS SIMULATION #
+----------------------------------------------------------------------------''')

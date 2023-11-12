@@ -170,3 +170,5 @@ def openNestedTab():
 
     else:
         print("Invalid tab index.")
+
+def displayAllTabs(tabs):

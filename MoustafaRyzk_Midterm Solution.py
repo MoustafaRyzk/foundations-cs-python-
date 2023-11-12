@@ -78,7 +78,7 @@ def closeTab():
     else:
         print(f"<< Index {index} is an Invalid tab index >>")
 
-def switchTab():
+def switchTabBYIndex():
     if len(tabs) == 0:
         print("<< You don't have any tab disply its content !! >>")
         return
@@ -232,3 +232,35 @@ def startApp():
     while True:
         displayMenu()
         user_choice = getPostiveIntNumFrom_to("Please Enter Your Choice: ","<<You must enter integer number between 1 and 10 ", 1, 10)
+
+        
+        if user_choice == 1:
+            openTab()
+
+        elif user_choice == 2:
+            closeTab()
+
+        elif user_choice == 3:
+            switchTabBYIndex()
+
+        elif user_choice == 4:
+            displayAllTabs(tabs)
+
+        elif user_choice == 5:
+            openNestedTab()
+
+        elif user_choice == 6:
+            clearAllTabs()
+
+        elif user_choice == 7:
+            saveTabs()
+
+        elif user_choice == 8:
+            importTabs()
+
+        elif user_choice == 9:
+            switchTabByTitle()
+
+        elif user_choice == 10:
+            print("\nTHANK YOU FOR USING OUR ADVANCED BROWSER TABS SIMULATION :) G00D BYE ")
+            quit()

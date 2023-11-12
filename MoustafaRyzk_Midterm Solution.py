@@ -185,3 +185,6 @@ def displayAllTabs(tabs):
         print(f"title: {title}")
         print(f"URL: {url}")
         print(f"content: {content}")
+
+        if 'nestedTabs' in tab:
+            displayAllTabs(tab['nestedTabs'])

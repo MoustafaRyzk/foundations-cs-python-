@@ -264,3 +264,7 @@ def startApp():
         elif user_choice == 10:
             print("\nTHANK YOU FOR USING OUR ADVANCED BROWSER TABS SIMULATION :) G00D BYE ")
             quit()
+def main():
+    startApp()
+
+main()

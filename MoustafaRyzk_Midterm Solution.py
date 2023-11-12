@@ -137,3 +137,29 @@ def switchTapByTitle(): # I try to improve program <<program will display all co
 
     if not found:
         print(f"Tab with title {title} not found !!!")
+
+def openNestedTab():
+
+    if len(tabs) == 0:
+        print("You don't have any tab opened!!")
+        return
+
+    parent_Index = input("Please enter the index of the tab you want to insert additional tabs in it : ")
+    while not parent_Index.isnumeric():
+            parent_Index = input("Please enter the index of the tab you want to insert additional tabs in it : ")
+    parent_Index=int(parent_Index)
+
+    if parent_Index >= 0 and parent_Index < len(tabs):
+        parent_Tab = tabs[parent_Index]
+
+        title = input("Enter the title of the nested tab: ")
+        url = input("Enter the URL of the nested tab: ")
+
+
+        nested_Tab = {"title": title, "url": url}
+        if 'nestedTabs' not in parent_Tab:
+            parent_Tab['nestedTabs'] = []
+        parent_Tab['nestedTabs'].append(nested_Tab)
+
+    else:
+        print("Invalid tab index.")

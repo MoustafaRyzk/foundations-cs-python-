@@ -190,4 +190,6 @@ def displayAllTabs(tabs):
             displayAllTabs(tab['nestedTabs'])
 
 def clearAllTabs():
+    tabs.clear()
+    print("<< All tabs cleared >>")
     

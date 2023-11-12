@@ -155,6 +155,13 @@ def openNestedTab():
         title = input("Enter the title of the nested tab: ")
         url = input("Enter the URL of the nested tab: ")
 
+        correct_Url = False
+        try:
+            url_Reader = requests.get(url)
+            correct_Url = True
+        except:
+            print(" << Invalid URL , please check website URL and try again >> ")
+            return
 
         nested_Tab = {"title": title, "url": url}
         if 'nestedTabs' not in parent_Tab:

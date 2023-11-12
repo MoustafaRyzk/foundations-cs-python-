@@ -122,17 +122,16 @@ def switchTabByTitle(): # I try to improve program <<program will display all co
             print(f"content: {content}")
             found = True
 
-        else:
-            if 'nestedTabs' in tab:
-                for tab in tab['nestedTabs']:
-                    if title == tab['title']:
-                        print(f"title: {title}")
-                        url=tab['url']
-                        url_Reader = requests.get(url).content
-                        content = BeautifulSoup(url_Reader, "lxml")
-                        print(f"URL: {url}")
-                        print(f"content: {content}")
-                        found=True
+        if 'nestedTabs' in tab:
+            for tab in tab['nestedTabs']:
+                if title == tab['title']:
+                    print(f"title: {title}")
+                    url=tab['url']
+                    url_Reader = requests.get(url).content
+                    content = BeautifulSoup(url_Reader, "lxml")
+                    print(f"URL: {url}")
+                    print(f"content: {content}")
+                    found=True
 
 
     if not found:
@@ -172,8 +171,8 @@ def openNestedTab():
         print("Invalid tab index.")
 
 def displayAllTabs(tabs):
-     
-     if len(tabs) == 0:
+
+    if len(tabs) == 0:
         return
 
     for tab in tabs:
@@ -205,7 +204,7 @@ def saveTabs():
 
         else:
             print("<< Sry, You must enter a jason file path only >>")
-    
+
 def importTabs():
     file_Path = input("Please enter the file path to import the tabs in it : ")
     if file_Path.endswith(".json"):
@@ -224,16 +223,18 @@ tabs=[] # her i make tabs a global variable take scoop of all project because no
 
 
 def startApp():
-    
+
     print('''----------------------------------------------------------------------------
     # HELLO USER :) , WELCOME TO OUR ADVANCED BROWSER TABS SIMULATION #
 ----------------------------------------------------------------------------''')
-    
+
     while True:
+        
         displayMenu()
+        
         user_choice = getPostiveIntNumFrom_to("Please Enter Your Choice: ","<<You must enter integer number between 1 and 10 ", 1, 10)
 
-        
+
         if user_choice == 1:
             openTab()
 
@@ -264,6 +265,8 @@ def startApp():
         elif user_choice == 10:
             print("\nTHANK YOU FOR USING OUR ADVANCED BROWSER TABS SIMULATION :) G00D BYE ")
             quit()
+
+
 def main():
     startApp()
 

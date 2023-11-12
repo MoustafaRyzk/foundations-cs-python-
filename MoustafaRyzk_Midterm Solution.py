@@ -107,7 +107,7 @@ def switchTab():
     else:
         print(f"<< Index {index} is an Invalid tab index >>")
 
-def switchTapByTitle(): # I try to improve program <<program will display all content of tabs have title the user enter>
+def switchTabByTitle(): # I try to improve program <<program will display all content of tabs have title the user enter>
 
     title = input("Please enter the title of tab you want to display its content : ")
     found=False
@@ -192,4 +192,7 @@ def displayAllTabs(tabs):
 def clearAllTabs():
     tabs.clear()
     print("<< All tabs cleared >>")
+
+def saveTabs():
+
     

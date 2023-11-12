@@ -99,7 +99,7 @@ def switchTabBYIndex():
             tab = tabs[index]
             title = tab['title']
             url = tab['url']
-            url_Reader = requests.get(url)
+            url_Reader = requests.get(url).content
             content = BeautifulSoup(url_Reader, "lxml")
             print(f"title: {title}")
             print(f"URL: {url}")

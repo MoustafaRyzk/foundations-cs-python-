@@ -188,3 +188,6 @@ def displayAllTabs(tabs):
 
         if 'nestedTabs' in tab:
             displayAllTabs(tab['nestedTabs'])
+
+def clearAllTabs():
+    

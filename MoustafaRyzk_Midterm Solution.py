@@ -218,4 +218,7 @@ def importTabs():
 
     else:
         print("<< Sry, You must enter a jason file path only >>")
+
+tabs=[] # her i make tabs a global variable take scoop of all project because no need to enter it as a parameter
+        # to all function one by one execpt [displayAllTabs must enter parameter => (recursive]
     

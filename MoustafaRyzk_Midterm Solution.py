@@ -208,7 +208,14 @@ def saveTabs():
     
 def importTabs():
     file_Path = input("Please enter the file path to import the tabs in it : ")
-    with open(file_Path, 'r') as file:
-        tabs.extend(json.load(file)) #https://www.geeksforgeeks.org/append-to-json-file-using-python/
-        print("<< Tabs imported from file >>")
+    if file_Path.endswith(".json"):
+        try:
+            with open(file_Path, 'r') as file:
+                tabs.extend(json.load(file)) #https://www.geeksforgeeks.org/append-to-json-file-using-python/
+                print("<< Tabs imported from file >>")
+        except:
+            print(" << Invalid file path , please check your file path and try again >> ")
+
+    else:
+        print("<< Sry, You must enter a jason file path only >>")
     

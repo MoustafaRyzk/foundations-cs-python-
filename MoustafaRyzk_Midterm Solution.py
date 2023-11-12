@@ -27,15 +27,16 @@ def displayMenu():
     print("\n####################")
     print("#       Menu       #")
     print("####################")
-    print("1. Open Tab")
-    print("2. Close Tab")
-    print("3. Switch Tab")
-    print("4. Display All Tabs")
-    print("5. Open Nested Tab")
-    print("6. Clear All Tabs")
-    print("7. Save Tabs")
-    print("8. Import Tabs")
-    print("9. Exit")
+    print("1 . Open Tab")
+    print("2 . Close Tab")
+    print("3 . Switch Tab BY Index")
+    print("4 . Display All Tabs")
+    print("5 . Open Nested Tab")
+    print("6 . Clear All Tabs")
+    print("7 . Save Tabs")
+    print("8 . Import Tabs")
+    print("9 . Switch Tab By Title")
+    print("10. Exit")
     print("####################")
     print()
 
@@ -57,17 +58,17 @@ def openTab():
 def closeTab():
 
     if len(tabs) == 0:
-        print("You don't have any tab opened!!")
+        print("<< You don't have any tab opened!! >>")
         return
 
     index = input("Please enter the index of tab you want to close , you can leave this field empty so we close last tab : ")
     if not index.isnumeric():
         if index == "":
             tabs.pop()
-            print("Closing the last tab is completed")
+            print("<< Closing the last tab is completed >>")
             return
         else:
-             print("Invalid tab index ")
+             print("<< Invalid tab index >> ")
 
     index = int(index)
 
@@ -77,11 +78,11 @@ def closeTab():
     else:
         print(f"<< Index {index} is an Invalid tab index >>")
 
-
 def switchTab():
     if len(tabs) == 0:
         print("<< You don't have any tab disply its content !! >>")
         return
+
     index = input("Please enter the index of tab you want to display its content : ")
     while not index.isnumeric():
         if index == "":
@@ -92,16 +93,47 @@ def switchTab():
     index=int(index)
 
     if index >= 0 and index < len(tabs):
-        tab = tabs[index]
-
-        title = tab['title']
-        url = tab['url']
-        url_Reader = requests.get(url).content
-        content = BeautifulSoup(url_Reader, "lxml")  # https://www.youtube.com/watch?v=taL3r_JpwBg
-
-        print(f"title: {title}")
-        print(f"URL: {url}")
-        print(f"{content}")
-
+        if "nestedTabs" in tabs[index]:
+            displayAllTabs(tabs[index])
+        else:
+            tab = tabs[index]
+            title = tab['title']
+            url = tab['url']
+            url_Reader = requests.get(url)
+            content = BeautifulSoup(url_Reader, "lxml")
+            print(f"title: {title}")
+            print(f"URL: {url}")
+            print(f"content: {content}")
     else:
         print(f"<< Index {index} is an Invalid tab index >>")
+
+def switchTapByTitle(): # I try to improve program <<program will display all content of tabs have title the user enter>
+
+    title = input("Please enter the title of tab you want to display its content : ")
+    found=False
+    for tab in tabs:
+
+        if title == tab['title']:
+            print(f"title: {title}")
+            url = tab['url']
+            url_Reader = requests.get(url).content
+            content = BeautifulSoup(url_Reader, "lxml")
+            print(f"URL: {url}")
+            print(f"content: {content}")
+            found = True
+
+        else:
+            if 'nestedTabs' in tab:
+                for tab in tab['nestedTabs']:
+                    if title == tab['title']:
+                        print(f"title: {title}")
+                        url=tab['url']
+                        url_Reader = requests.get(url).content
+                        content = BeautifulSoup(url_Reader, "lxml")
+                        print(f"URL: {url}")
+                        print(f"content: {content}")
+                        found=True
+
+
+    if not found:
+        print(f"Tab with title {title} not found !!!")

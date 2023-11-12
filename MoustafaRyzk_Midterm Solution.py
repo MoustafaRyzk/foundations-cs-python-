@@ -228,3 +228,7 @@ def startApp():
     print('''----------------------------------------------------------------------------
     # HELLO USER :) , WELCOME TO OUR ADVANCED BROWSER TABS SIMULATION #
 ----------------------------------------------------------------------------''')
+    
+    while True:
+        displayMenu()
+        user_choice = getPostiveIntNumFrom_to("Please Enter Your Choice: ","<<You must enter integer number between 1 and 10 ", 1, 10)

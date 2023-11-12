@@ -172,3 +172,16 @@ def openNestedTab():
         print("Invalid tab index.")
 
 def displayAllTabs(tabs):
+     
+     if len(tabs) == 0:
+        return
+
+    for tab in tabs:
+        title = tab['title']
+        url = tab['url']
+        url_Reader = requests.get(url).content
+        content = BeautifulSoup(url_Reader, "lxml")  # https://www.youtube.com/watch?v=taL3r_JpwBg
+
+        print(f"title: {title}")
+        print(f"URL: {url}")
+        print(f"content: {content}")

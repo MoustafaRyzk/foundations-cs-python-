@@ -240,7 +240,6 @@ def startApp():
     while True:
 
         displayMenu()
-        print(tabs)
 
         user_choice = getPostiveIntNumFrom_to("Please Enter Your Choice: ",
                                               "<<You must enter integer number between 1 and 10 ", 1, 10)

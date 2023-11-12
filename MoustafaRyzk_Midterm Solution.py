@@ -194,5 +194,9 @@ def clearAllTabs():
     print("<< All tabs cleared >>")
 
 def saveTabs():
+    file_Path = input("Please enter file path to save the tabs on it : ")
+    with open(file_path, 'w') as file:   #https://programmingadvices.com/courses/introduction-to-programming-using-c-level-2/lectures/42360420
+        json.dump(tabs, file)            #https://www.youtube.com/watch?v=C1crQ2-SIHc
+        print("<< Tabs saved on file >>")    #https://www.geeksforgeeks.org/json-dump-in-python/
 
     
